@@ -1,5 +1,22 @@
 const http = require('http');
 const url = require('url');
+const mysql = require('mysql2');
+
+const dbName = "partiesIds";
+
+const con = mysql.createConnection({
+	host: "localhost",
+	user: "nodejsuser",
+	password: "nodeMysql1357"
+});
+
+
+let createDb = function(err){
+	if (err) throw err;
+	con.query(`CREATE DATABASE IF NOT EXISTS ${dbName};`);
+});
+
+con.connect(createDb);
 
 let oldRolls = [];
 

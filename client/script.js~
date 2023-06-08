@@ -1,7 +1,8 @@
 async function loadRoll () {
 	let initiativeModifier = localStorage.getItem("initiativeModifier");
 	let characterName = localStorage.getItem("characterName");
-	let response = await fetch(`http://localhost:3000/roll?characterName=${characterName}&initiativeModifier=${initiativeModifier}`);
+	let playerId = localStorage.getItem("playerId");
+	let response = await fetch(`http://localhost:3000/roll?characterName=${characterName}&initiativeModifier=${initiativeModifier}&playerId=${playerId}`);
 	let data = await response.text();
 	document.getElementById("rollResult").innerHTML = data;
 }

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" href="styles.css">
+		<title>ROLL INITIATIVE!</title>
+	</head>
+	<body>
+		<h1>ROLL INITIATIVE</h1>
+		<button class="open-button" onclick="openForm()">Edit profile</button>
+		<div class="container">
+			<div class="form-popup" id="myForm">
+				<form class="form-container">
+					<label for="characterName">Character name:</label>
+					<br>
+					<input type="text" id="characterName" name="characterName">
+					<br>
+					<label for="initiativeModifier">Initiative modifier:</label>
+					<br>
+					<div class="slidecontainer">
+						<input type="range" min="-5" max="5" value="0" class="slider" id="initiativeModifier" name="initiativeModifier">
+						<span id="sliderValue"></span>
+					</div>	
+					<button onclick="store(['characterName', 'initiativeModifier']);closeForm();" type="button" id="submitNameButton">Submit</button>
+				</form>
+			</div>
+		</div>
+		
+		<div class="container shadow">
+			<p>Your name is: <spam id="storedName"></spam></p>
+			<p>Your initiative modifier is: <span id="storedInitiative"></span></p>
+		</div>
+
+		<div class="container" title="The Empty Throne is always watching your rolls">
+			<img src="theThrone.png" alt="The Throne">
+			<div class="block"></div>
+		</div>
+		<button type="button" onclick="loadRoll()">
+			ROLL INITIATIVE
+		</button>
+		<div class="container shadow" style="width=50px;" id="rollResult">
+			___
+		</div>
+		<div class="container shadow">
+			<em>Anything</em> could happen...
+		</div>
+		<div class="container shadow">
+			<p>Previous rolls: </p>
+			<ul class="plainList" id="previousRolls">___</p>
+		</div>
+		<script type="text/javascript" src="script.js"></script>
+	</body>
+</html>

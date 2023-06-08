@@ -1,5 +1,23 @@
 const http = require('http');
 const url = require('url');
+const mysql = require('mysql2');
+
+const dbName = "partiesIds";
+
+const con = mysql.createConnection({
+	host: "localhost",
+	user: "nodejsuser",
+	password: "nodeMysql1357"
+});
+
+con.connect(function(err) {
+	if (err) throw err;
+	console.log("Connected!");
+	con.query(`CREATE DATABASE IF NOT EXISTS ${dbName};`, function(err, result){
+		if (err) throw err;
+		console.log(`Dabatase created with name: ${dbName}`);
+	});
+});
 
 let oldRolls = [];
 

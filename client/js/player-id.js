@@ -1,12 +1,3 @@
-async function loadRoll () {
-	let initiativeModifier = localStorage.getItem("initiativeModifier");
-	let characterName = localStorage.getItem("characterName");
-	let playerId = localStorage.getItem("playerId");
-	let response = await fetch(`http://localhost:3000/roll?characterName=${characterName}&initiativeModifier=${initiativeModifier}&playerId=${playerId}`);
-	let data = await response.text();
-	document.getElementById("rollResult").innerHTML = data;
-}
-
 function store(elementsId){
 	elementsId.forEach((elementId)=>{
 		let valueToStore = document.getElementById(elementId);
@@ -18,6 +9,7 @@ function store(elementsId){
 function displayStoredValues () {
 	document.getElementById("storedName").innerHTML = localStorage.getItem("characterName");
 	document.getElementById("storedInitiative").innerHTML = localStorage.getItem("initiativeModifier");
+	document.getElementById("playerId").innerHTML = localStorage.getItem("playerId");
 }
 
 displayStoredValues();
@@ -44,24 +36,6 @@ function setPlayerId () {
 
 setPlayerId();
 
-function generateListItems(arg){
-        let items = "";
-        for(let i = 0;i<arg.length;i++){
-        items += `<li>${arg[i]}</li>`;
-        }
-        return items;
-}
-
-function shortPolling() {
-        setInterval(async()=>{
-                let response = await fetch("http://localhost:3000/rolls_history");
-                let data = await response.json()
-                document.getElementById("previousRolls").innerHTML = generateListItems(data);
-        },5000);
-}
-
-shortPolling();
-
 function openForm(){
 	document.getElementById("myForm").style.display = "block";
 }
@@ -80,4 +54,3 @@ inputName.addEventListener("keypress", function(event){
 
 document.getElementById("initiativeModifier").oninput = function(){document.getElementById("sliderValue").innerHTML = this.value;
 }
-	
